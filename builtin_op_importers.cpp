@@ -5741,8 +5741,9 @@ DEFINE_BUILTIN_OP_IMPORTER(TRT_PluginV2)
     std::vector<nvinfer1::ITensor*> tensors;
     for (auto& input : inputs)
     {
-        ASSERT(input.is_tensor() && "The input must be a tensor.", nvonnxparser::ErrorCode::kUNSUPPORTED_NODE);
-        tensors.push_back(&input.tensor());
+        // ASSERT(input.is_tensor() && "The input must be a tensor.", nvonnxparser::ErrorCode::kUNSUPPORTED_NODE);
+        // tensors.push_back(&input.tensor());
+        tensors.push_back(&convertToTensor(input, ctx));
     }
     OnnxAttrs attrs(node, ctx);
 
